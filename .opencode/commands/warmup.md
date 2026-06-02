@@ -1,12 +1,14 @@
 ---
-description: 预读所有文档和 TODO, 快速了解项目状态
+description: 项目全盘扫描, 呈现状态, 选择任务
 agent: plan
 subtask: false
 ---
 
-`$ARGUMENTS` 控制扫描深度:
+`$ARGUMENTS`:
 - 空 / "deep" — 完整扫描 (TODO, 进行中, 待办, 知识库, 包文档)
-- "quick" / "simple" — 快速扫描, 仅读 TODO.md + tasks/doing/
+- "quick" / "simple" — 快速扫描, 仅读 TODO.md + docs/tasks/doing/
+
+> 如需搜索任务, 请使用 `/find-task <keyword>`.
 
 ## 阶段 1: 项目状态扫描
 
@@ -14,17 +16,17 @@ subtask: false
 
 **完整扫描** ($ARGUMENTS 为空或 "deep"):
 - `TODO.md` — 全局待办概览
-- `tasks/doing/task-*.md` — 当前进行中的任务 (所有)
-- `tasks/todo/task-*.md` — 待处理任务 (所有)
+- `docs/tasks/doing/task-*.md` — 当前进行中的任务 (所有)
+- `docs/tasks/todo/task-*.md` — 待处理任务 (所有)
 - `docs/doc-*.md` — 所有知识库文档
 - `packages/**/README.md` — 自研包文档
 
 **快速扫描** ($ARGUMENTS 为 "quick" 或 "simple"):
 - `TODO.md` — 全局待办概览
-- `tasks/doing/task-*.md` — 当前进行中的任务 (所有)
+- `docs/tasks/doing/task-*.md` — 当前进行中的任务 (所有)
 
 **以上两种模式都不读取**:
-- `tasks/done/` — 已完成的任务
+- `docs/tasks/done/` — 已完成的任务
 - `docs/legacy/` — 过时的参考文档
 - 代码文件 — 此阶段仅通过文档了解状态
 
@@ -58,7 +60,7 @@ agent 返回: 每个任务文件的 title, status, summary (从 YAML front matte
 1. **读取任务文件** — 完整内容
 2. **解析 `related` 字段** — 从 YAML front matter 提取 `related` 列表
 3. **读取关联文件** — 对每个 related 引用, 解析为实际路径:
-   - `task-yyyy-mm-dd-xxx` → `tasks/doing/task-*.md` 或 `tasks/todo/task-*.md` (glob 匹配)
+   - `task-yyyy-mm-dd-xxx` → `docs/tasks/doing/task-*.md` 或 `docs/tasks/todo/task-*.md` (glob 匹配)
    - `doc-xxx` → `docs/doc-xxx*.md` (glob 匹配)
    - 直接路径 (以 `src/` 或 `packages/` 开头) → 直接读取
    - 并行读取全部关联文件

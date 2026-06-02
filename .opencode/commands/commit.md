@@ -1,6 +1,9 @@
 ---
-description: 检查、分组、提交并推送(可选)
+description: 正式分组提交 + 推送, 用于成果收尾
 ---
+
+与 /checkpoint 的区别: checkpoint 是随手中转保存 (一键 add + commit, 不分组不推送).
+此命令用于代码完成后的正式提交, 涉及分组审查、submodule 处理、推送.
 
 用 todo 工具组织以下步骤
 
@@ -39,7 +42,7 @@ description: 检查、分组、提交并推送(可选)
 
 | 组 | 文件 | 建议 commit message |
 |----|------|-------------------|
-| 1 | src/renderer/arrange-stage.js, tasks/... | refactor(arrange-stage): ... |
+| 1 | src/foo.js, docs/tasks/... | refactor(foo): 实现 xxx |
 | 2 | (如需确认) | — |
 
 ### 待确认

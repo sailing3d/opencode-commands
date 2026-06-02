@@ -1,19 +1,23 @@
 ---
-description: 任务交接: 同步文档 + 生成新 session 上下文摘要
+description: 暂停交接: sync-docs + 上下文摘要, 供新 session 恢复
 agent: build
 ---
 
+与 /close (完成归档) 的区别: handoff 不移动任务文件, 保留 doing 状态.
+与 /sync-docs 的关系: handoff = sync-docs + 交接摘要 (额外的会话输出).
+与"上下文压缩"的关系: handoff 将摘要写入文档 (持久化), 而不仅是临时文本.
+
 ## 1. 同步文档
 
-执行 sync-docs 的步骤: 更新任务文件 related, 更新相关 doc, 检查 AGENTS.md, commit + push.
+执行 /sync-docs 步骤: 更新任务文件 related, 更新相关 doc, 更新 TODO.md, 检查项目约定文件.
 
 ## 2. 生成交接摘要
 
 输出一段可直接粘贴给新 session 的文本, 包含:
 
 ### 当前状态
-- 各页面完成度 (已完成 / 核心完成 / 未开始)
-- 剩余 Node/Electron 依赖清单
+- 各模块完成度 (已完成 / 核心完成 / 未开始)
+- 剩余依赖/待办清单
 
 ### 下一步
 - 具体可执行的动作 (文件 + 步骤描述)
@@ -28,3 +32,14 @@ agent: build
 
 ### 关键 Commit
 - 最近 3-5 个有意义的 commit hash + 说明
+
+## 3. 恢复指引
+
+交接摘要末尾添加恢复建议:
+```
+### 如何恢复
+
+1. 新 session 使用 /start <task-id>
+2. 根据当前状态, 选择 /plan 或 /build 继续
+3. 注意避坑: ...
+```

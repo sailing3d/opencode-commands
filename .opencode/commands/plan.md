@@ -1,5 +1,5 @@
 ---
-description: 分析需求, 制定方案, 确认后进入 Build
+description: 分析需求, 制定方案, 确认后提案给 /design
 agent: plan
 subtask: false
 ---
@@ -17,7 +17,7 @@ subtask: false
 
 用 explore agent (thoroughness: "medium") 扫描受影响区域:
 
-- 扫描 `related` 引用链 — 已有相关 task/doc 的, 先读取
+- 扫描 `related` 引用链 — 已有相关 task, doc 的, 先读取
 - 扫描代码文件 — 识别需要修改的文件分布
 - 识别依赖关系 — 是否有跨 package 改动, 是否需要新增包
 
@@ -34,8 +34,8 @@ subtask: false
 ### 修改范围
 | 文件 | 改动类型 | 说明 |
 |------|---------|------|
-| src/renderer/foo.js | 修改 | 替换 fs.readFile → fileService.read |
-| packages/@dentalshop/bar/ | 新增 | 新建包, 从 2403 复制 |
+| src/foo.js | 修改 | 替换实现逻辑 |
+| packages/bar/ | 新增 | 新建功能模块 |
 
 ### 步骤
 1. Step 1 — xxx
@@ -48,4 +48,6 @@ subtask: false
 
 ## 4. 确认
 
-用 question 工具向用户呈现方案, 确认后进入 Build 阶段.
+用 question 工具向用户呈现方案. 确认后:
+
+> "方案已达成共识. 使用 /design 将方案写入任务文档, 锁定后进入 Build."
