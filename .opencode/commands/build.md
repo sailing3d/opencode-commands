@@ -41,6 +41,6 @@ agent: build
 - src/b.js — 修改
 
 ### 建议后续
-- /review — 提交前代码审查
+- /x-review — 提交前代码审查
 - /commit — 正式提交成果
 ```

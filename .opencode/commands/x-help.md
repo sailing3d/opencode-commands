@@ -18,7 +18,7 @@ agent: plan
 | `/design` | 方案写入文档, 锁定进入 Build | build | 是 | Plan→Build |
 | `/build` | 按 Plan 决议逐步执行代码 | build | 是 | Build |
 | `/check` | 静态验证 (lint/typecheck/compile) | build | 是* | Build |
-| `/review` | 代码审查 (约定合规性) | plan | 否 | Build |
+| `/x-review` | 代码审查 (约定合规性) | plan | 否 | Build |
 | `/checkpoint` | 随手中转提交 (WIP) | build | 是 | Build |
 | `/commit` | 正式分组提交 + 推送 | build | 是 | 收尾 |
 | `/sync-docs` | 同步关联文档 | build | 是 | 收尾 |
@@ -65,7 +65,7 @@ subagent_type: "reviewer-pro"
 ## 完整流程参考
 
 ```
-新建任务:      /task "xxx" → (选) /plan → /design → /build → /review → /commit → /close
+新建任务:      /task "xxx" → (选) /plan → /design → /build → /x-review → /commit → /close
 继续已有:      /start <id> → (选) /plan | /build → /checkpoint → ...
 快速修复:      /task "xxx" → /build → /check → /commit → /close
 临时中断:      /checkpoint → /handoff    (下次 /start <id> 恢复)

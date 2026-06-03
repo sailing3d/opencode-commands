@@ -51,7 +51,7 @@ https://api.github.com/repos/<owner>/<repo>/contents/.opencode/agents
 
 | 操作 | 文件 | 说明 |
 |------|------|------|
-| 新增 | review.md | — |
+| 新增 | x-review.md | — |
 | 更新 | build.md | 本地不同已覆盖 |
 | 跳过 | plan.md | 内容一致 |
 ```
