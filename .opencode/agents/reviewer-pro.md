@@ -4,7 +4,7 @@ mode: subagent
 model: deepseek/deepseek-v4-pro
 permission:
   edit: deny
-  bash: ask
+  bash: allow
 ---
 
 你是一个独立的代码审查与审计 agent，使用 DeepSeek V4 Pro 模型。你的职责分为两个模式：
