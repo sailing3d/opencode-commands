@@ -1,11 +1,11 @@
 ---
-description: 从上游模板仓库同步命令文件
+description: 从上游模板仓库同步命令文件与 agent 文件
 agent: build
 ---
 
 $ARGUMENTS:
 - 空 / "fetch" — 从上游拉取更新 (默认)
-- "push"       — 将本地 commands 推回上游
+- "push"       — 将本地 commands 和 agents 推回上游
 
 源信息存于 `.opencode/.bootstrap-source`.
 
@@ -20,15 +20,18 @@ $ARGUMENTS:
 
 ### 2. 获取上游文件列表
 
-用 webfetch (format: text) 调用 GitHub API:
+分别调用两个 GitHub API:
 ```
+# 命令文件
 https://api.github.com/repos/<owner>/<repo>/contents/.opencode/commands
+# agent 文件
+https://api.github.com/repos/<owner>/<repo>/contents/.opencode/agents
 ```
 解析返回 JSON, 记录 `name`, `sha`, `download_url`.
 
 ### 3. 对比本地
 
-对每个上游文件:
+对每个上游文件 (commands + agents):
 - **本地缺失** → 标记为 **新增**
 - **本地存在, 内容相同** → 标记为 **跳过**
 - **本地存在, 内容不同** → 标记为 **冲突**
@@ -39,7 +42,7 @@ https://api.github.com/repos/<owner>/<repo>/contents/.opencode/commands
 
 ### 5. 执行下载
 
-新增 + 用户确认覆盖的文件: webfetch download_url → write 到本地.
+新增 + 用户确认覆盖的文件: webfetch download_url → write 到本地 (commands 写入 `.opencode/commands/`, agents 写入 `.opencode/agents/`).
 
 ### 6. 输出摘要
 
@@ -78,7 +81,10 @@ gh auth status
 
 ```bash
 gh repo clone <owner/repo> "$env:TEMP\opencode-commands-sync" -- --branch <branch>
+# 同步命令文件
 Copy-Item -Path ".opencode/commands/*.md" -Destination "$env:TEMP\opencode-commands-sync\.opencode\commands\" -Force
+# 同步 agent 文件
+Copy-Item -Path ".opencode/agents/*.md" -Destination "$env:TEMP\opencode-commands-sync\.opencode\agents\" -Force
 # cd → git add → git commit → git push
 ```
 

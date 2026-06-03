@@ -42,6 +42,13 @@ agent: plan
 |-------|------|---------|
 | **Plan** | 只读 | 讨论、搜索、分析、审查、加载上下文 |
 | **Build** | 读写 | 文档写入、代码编辑、命令执行、git 操作 |
+| **reviewer-pro** | subagent (只读) | 独立代码审查 + 审计, 绑定 DeepSeek V4 Pro |
+
+使用 reviewer-pro:
+```
+subagent_type: "reviewer-pro"
+```
+在 Task 中指定此 subagent 即可独立审查当前任务变更或审计历史代码质量。
 
 ## Session 命名约定
 
