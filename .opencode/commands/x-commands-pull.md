@@ -6,8 +6,10 @@ subtask: true
 
 同步方向: **远程 → 本地**。远程文件覆盖本地。远程有而本地无的**先询问用户**再删除。
 
+上游默认: `sailing3d/opencode-commands`（来自 `.opencode/x-commands-README.md` front matter 的 `source-url`）。
+
 1. 用 Read 工具读取 `.opencode/x-commands-README.md` 的 YAML front matter, 提取 `source-url` 和 `source-branch`
-2. 从 `source-url` 解析 owner/repo, 调 GitHub API 获取远程文件列表:
+2. 从 `source-url` 解析 owner/repo（默认为 `sailing3d/opencode-commands`）, 调 GitHub API 获取远程文件列表:
    - `contents/.opencode/commands` → 返回远程所有 `.md` 文件名
    - `contents/.opencode/agents` → 同上
    - `contents/.opencode/skills` → 返回子目录列表

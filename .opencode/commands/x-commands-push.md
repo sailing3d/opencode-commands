@@ -6,9 +6,11 @@ subtask: true
 
 同步方向: **本地 → 远程**。本地文件覆盖远程，远程有而本地无的**删除**。不要反向同步。
 
+默认目标仓库: `sailing3d/opencode-commands`（来自 `.opencode/x-commands-README.md` front matter 的 `source-url`）。
+
 1. 用 bash 执行 `gh auth status` 确认 `gh` 可用
-2. question 选目标: 上游仓库 / 自定义仓库
-3. `gh repo clone {target} {clone目录}` 克隆到 `<项目根>/../opencode-commands-sync`
+2. question 选目标: 默认上游仓库 `sailing3d/opencode-commands` / 自定义仓库
+3. 用 bash 执行 `gh repo clone {target} "$env:TEMP\opencode-commands-sync"` 克隆到系统临时目录
 4. 用 bash 执行文件同步:
    - 删除克隆的 `.opencode/commands/` 下所有 `.md`
    - 复制本地 `.opencode/commands/*.md` → 克隆 `.opencode/commands/`
