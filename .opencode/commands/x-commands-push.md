@@ -4,9 +4,9 @@ agent: build
 subtask: true
 ---
 
-同步方向: **本地 → 远程**。本地文件覆盖远程，远程有而本地无的**删除**。不要反向同步。
+同步方向: **本地 → 远程**. 本地文件覆盖远程, 远程有而本地无的**删除**. 不要反向同步. 
 
-默认目标仓库: `sailing3d/opencode-commands`（来自 `.opencode/x-commands-README.md` front matter 的 `source-url`）。
+默认目标仓库: `sailing3d/opencode-commands`(来自 `.opencode/x-commands-README.md` front matter 的 `source-url`). 
 
 1. 用 bash 执行 `gh auth status` 确认 `gh` 可用
 2. question 选目标: 默认上游仓库 `sailing3d/opencode-commands` / 自定义仓库

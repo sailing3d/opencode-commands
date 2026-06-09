@@ -3,6 +3,8 @@ name: plan-workflow
 description: 需求分析与方案制定工作流. 用于 /plan 命令.
 ---
 
+承接 open-task 阶段发现的问题, 进行技术分析和方案讨论.
+
 ## 1. 理解需求
 
 与用户澄清: 目标 (解决什么问题/实现什么功能), 范围 (涉及页面/模块/package), 约束 (已知限制或约定), 优先级.
@@ -10,8 +12,7 @@ description: 需求分析与方案制定工作流. 用于 /plan 命令.
 ## 2. 影响分析
 
 用 explore agent (thoroughness: "medium") 扫描:
-- 读取 `related` 引用的相关 task/doc
-- 扫描需修改的文件分布
+- 读取 `related` 中的代码路径, 扫描需修改的文件分布
 - 识别跨 package 依赖
 
 ## 3. 输出方案

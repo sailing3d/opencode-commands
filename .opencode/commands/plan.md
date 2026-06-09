@@ -4,4 +4,4 @@ agent: plan
 subtask: false
 ---
 
-用 skill 工具加载 plan-workflow, 按规则分析需求并制定方案。
+用 skill 工具加载 plan-workflow, 按规则分析需求并制定方案. 
